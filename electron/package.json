@@ -1,0 +1,65 @@
+{
+  "name": "damai-helper-electron",
+  "version": "1.0.0",
+  "description": "DamaiHelper - 公平抢票助手",
+  "main": "main.js",
+  "author": "DamaiHelper Team",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win"
+  },
+  "dependencies": {
+    "electron": "^27.0.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.damaihelper.app",
+    "productName": "DamaiHelper",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules",
+      "../frontend/build/**/*",
+      "../backend/**/*",
+      "!../backend/__pycache__",
+      "!../backend/**/__pycache__"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend",
+        "filter": ["**/*", "!__pycache__", "!**/__pycache__"]
+      },
+      {
+        "from": "../frontend/build",
+        "to": "frontend",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": ["dmg", "zip"],
+      "icon": "icon.png",
+      "artifactName": "${productName}-Mac-${version}.${ext}"
+    },
+    "win": {
+      "target": ["nsis", "portable"],
+      "icon": "icon.png",
+      "artifactName": "${productName}-Windows-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
+
