@@ -1,0 +1,80 @@
+.app-layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.app-header {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-content {
+  padding: 40px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ant-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 600;
+}
+
+.ant-list-item {
+  padding: 16px 24px;
+  transition: all 0.3s;
+}
+
+.ant-list-item:hover {
+  background: #fafafa;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.ant-btn-primary:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.ant-tag {
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+@media (max-width: 768px) {
+  .app-content {
+    padding: 20px;
+  }
+  
+  .app-header {
+    padding: 0 20px;
+  }
+  
+  .app-header h1 {
+    font-size: 18px;
+  }
+}
+

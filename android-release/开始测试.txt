@@ -1,0 +1,47 @@
+# 🎯 开始测试 - 请先看这里！
+
+## 第一步：安装必要软件
+
+### 1. Python 3.9+
+- **Mac**: 打开终端，输入 `brew install python3`
+- **Windows**: 访问 https://www.python.org 下载安装
+
+### 2. ADB 工具
+- **Mac**: 打开终端，输入 `brew install android-platform-tools`
+- **Windows**: 下载 https://developer.android.com/studio/releases/platform-tools
+
+## 第二步：准备手机
+
+1. 手机进入：设置 → 关于手机
+2. 连续点击"版本号"7次
+3. 返回设置 → 开发者选项
+4. 打开"USB调试"
+5. 连接手机到电脑
+6. 手机弹窗点击"允许"
+
+## 第三步：运行测试
+
+### Mac 用户
+```bash
+# 打开终端，进入这个文件夹
+cd android-release
+
+# 运行测试
+./test-android.sh
+```
+
+### Windows 用户
+```cmd
+# 打开命令提示符，进入这个文件夹
+cd android-release
+
+# 运行测试
+test-android.bat
+```
+
+## 看到"测试通过"就成功了！🎉
+
+---
+
+**详细说明请看 README.md**
+
