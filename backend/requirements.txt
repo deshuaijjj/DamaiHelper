@@ -1,0 +1,15 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+websockets==12.0
+uiautomator2>=3.0.0
+tidevice>=0.9.0
+facebook-wda>=1.4.0
+opencv-python>=4.8.0
+pytesseract>=0.3.10
+Pillow>=10.0.0
+adbutils>=1.2.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+loguru>=0.7.0
+
