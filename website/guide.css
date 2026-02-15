@@ -1,0 +1,682 @@
+/* 教程页面样式 */
+:root {
+    --primary-color: #0071e3;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --background: #f5f5f7;
+    --border-color: #d2d2d7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--background);
+}
+
+/* 导航栏 */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 22px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+/* Hero 区域 */
+.guide-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 22px 60px;
+    text-align: center;
+}
+
+.guide-hero h1 {
+    font-size: 56px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.guide-subtitle {
+    font-size: 21px;
+    opacity: 0.9;
+}
+
+/* 导航菜单 */
+.guide-nav {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 48px;
+    z-index: 100;
+}
+
+.guide-nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+}
+
+.guide-nav-item {
+    padding: 16px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.guide-nav-item:hover,
+.guide-nav-item.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* 内容区域 */
+.guide-content {
+    padding: 60px 22px;
+}
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.guide-section {
+    background: white;
+    border-radius: 18px;
+    padding: 60px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 步骤标题 */
+.step-header {
+    margin-bottom: 40px;
+}
+
+.step-badge {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.step-header h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.step-subtitle {
+    font-size: 19px;
+    color: var(--text-secondary);
+}
+
+/* 检查清单 */
+.checklist {
+    display: grid;
+    gap: 24px;
+}
+
+.checklist-item {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    background: var(--background);
+    border-radius: 12px;
+}
+
+.check-icon {
+    flex-shrink: 0;
+}
+
+.check-content h4 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.check-content p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* 提示框 */
+.tip-box {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 32px;
+}
+
+.tip-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.tip-content h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.tip-content p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.tip-warning {
+    background: #fff3cd;
+    border-left: 4px solid #ff9500;
+}
+
+.tip-info {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.tip-success {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+}
+
+/* 安装步骤 */
+.install-steps {
+    display: grid;
+    gap: 32px;
+}
+
+.install-step {
+    display: flex;
+    gap: 24px;
+}
+
+.install-number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.install-content h4 {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.install-content p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.install-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.install-content li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    padding-left: 24px;
+    position: relative;
+}
+
+.install-content li:before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 设备指南 */
+.device-guide {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.device-type {
+    background: var(--background);
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.device-type h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.device-steps {
+    display: grid;
+    gap: 16px;
+}
+
+.device-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.device-step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.device-step p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.small-text {
+    font-size: 13px;
+    color: #999;
+}
+
+/* 验证框 */
+.verification-box {
+    background: #e8f5e9;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
+}
+
+.verification-box h4 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.verification-box > p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.verification-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+/* 配置指南 */
+.config-guide {
+    display: grid;
+    gap: 32px;
+}
+
+.config-item {
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.config-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.config-label {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.config-desc p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.config-note {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+}
+
+/* 时间线 */
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline:before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -33px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.timeline-content h4 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.timeline-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0;
+}
+
+.timeline-content li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    padding-left: 24px;
+    position: relative;
+}
+
+.timeline-content li:before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.timeline-note {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+}
+
+/* FAQ 列表 */
+.faq-list {
+    display: grid;
+    gap: 24px;
+}
+
+.faq-item {
+    background: var(--background);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.faq-item h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.faq-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.faq-item ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0;
+}
+
+.faq-item li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    padding-left: 24px;
+    position: relative;
+}
+
+.faq-item li:before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 页脚 */
+.guide-footer {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.guide-footer h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.guide-footer p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.guide-footer a:not(.btn) {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0077ed;
+    transform: scale(1.02);
+}
+
+.btn-large {
+    padding: 16px 32px;
+    font-size: 19px;
+}
+
+/* 底部 Footer */
+footer {
+    background: var(--text-primary);
+    color: white;
+    padding: 40px 22px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.copyright {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .guide-hero h1 {
+        font-size: 40px;
+    }
+
+    .guide-subtitle {
+        font-size: 17px;
+    }
+
+    .guide-nav-content {
+        gap: 16px;
+    }
+
+    .guide-section {
+        padding: 32px 24px;
+    }
+
+    .step-header h2 {
+        font-size: 32px;
+    }
+
+    .device-guide {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        padding-left: 32px;
+    }
+
+    .timeline:before {
+        left: 11px;
+    }
+
+    .timeline-dot {
+        left: -29px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
