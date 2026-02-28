@@ -31,6 +31,17 @@
             <a href="guide.html" class="btn btn-primary">使用教程</a>
             <a href="#download" class="btn btn-secondary">立即下载</a>
         </div>
+        
+        <!-- 下滑引导 -->
+        <div class="scroll-indicator">
+            <a href="#mission" class="scroll-hint">
+                <span class="scroll-text">了解更多</span>
+                <svg class="scroll-arrow" width="12" height="20" viewBox="0 0 12 20">
+                    <polyline fill="none" stroke="currentColor" stroke-width="2" points="1,1 6,6 11,1"></polyline>
+                    <polyline fill="none" stroke="currentColor" stroke-width="2" points="1,9 6,14 11,9"></polyline>
+                </svg>
+            </a>
+        </div>
     </section>
 
     <!-- 使命宣言 -->
@@ -278,7 +289,7 @@
                     <div class="version-badge">v1.0.0</div>
                     <div class="recommended-badge">推荐</div>
                     <p>支持 macOS 10.15 或更高版本<br>Intel 和 Apple Silicon<br><strong>支持 Android 手机</strong></p>
-                    <a href="/downloads/DamaiHelper-Mac-v1.0.0.dmg" class="btn btn-primary" download>下载 Mac 版</a>
+                    <a href="https://github.com/deshuaijjj/DamaiHelper/releases/latest/download/DamaiHelper-Mac-v1.0.0.dmg" class="btn btn-primary" download>下载 Mac 版</a>
                 </div>
                 <div class="platform-card featured">
                     <div class="platform-icon">􀙗</div>
@@ -286,7 +297,14 @@
                     <div class="version-badge">v1.0.0</div>
                     <div class="recommended-badge">推荐</div>
                     <p>支持 Windows 10 或更高版本<br>64位系统<br><strong>支持 Android 手机</strong></p>
-                    <a href="/downloads/DamaiHelper-Windows-v1.0.0.exe" class="btn btn-primary" download>下载 Windows 版</a>
+                    <a href="https://github.com/deshuaijjj/DamaiHelper/releases/latest/download/DamaiHelper-Windows-v1.0.0.exe" class="btn btn-primary" download>下载 Windows 版</a>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🐧</div>
+                    <h3>Linux (Android)</h3>
+                    <div class="version-badge">v1.0.0</div>
+                    <p>支持主流 Linux 发行版<br>x64 架构<br><strong>支持 Android 手机</strong></p>
+                    <a href="https://github.com/deshuaijjj/DamaiHelper/releases/latest/download/DamaiHelper-Linux-v1.0.0.AppImage" class="btn btn-secondary" download>下载 Linux 版</a>
                 </div>
             </div>
 
@@ -309,6 +327,45 @@
                 </div>
             </div>
             
+            <!-- 隐私与安全 -->
+            <div class="privacy-section">
+                <div class="privacy-icon">
+                    <svg width="56" height="56" viewBox="0 0 56 56">
+                        <circle cx="28" cy="28" r="26" fill="none" stroke="#0071e3" stroke-width="2"/>
+                        <path d="M28 10 L28 20 M28 36 L28 46 M10 28 L20 28 M36 28 L46 28" stroke="#0071e3" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="28" cy="28" r="6" fill="#0071e3"/>
+                    </svg>
+                </div>
+                <h3>隐私与安全</h3>
+                <p class="privacy-lead">你的隐私，由你掌控</p>
+                <div class="privacy-grid">
+                    <div class="privacy-item">
+                        <div class="privacy-item-icon">🔒</div>
+                        <h4>本地运行</h4>
+                        <p>软件完全在你的设备上运行，所有操作都在本地完成。我们无法访问你的设备或数据。</p>
+                    </div>
+                    <div class="privacy-item">
+                        <div class="privacy-item-icon">🚫</div>
+                        <h4>零数据收集</h4>
+                        <p>不收集任何个人信息、使用数据或下载记录。我们甚至不知道有多少人在使用这个软件。</p>
+                    </div>
+                    <div class="privacy-item">
+                        <div class="privacy-item-icon">👁️</div>
+                        <h4>代码透明</h4>
+                        <p>所有源代码公开在 GitHub，任何人都可以审计。如果有任何可疑行为，社区会立即发现。</p>
+                    </div>
+                    <div class="privacy-item">
+                        <div class="privacy-item-icon">🛡️</div>
+                        <h4>无服务器依赖</h4>
+                        <p>软件不依赖任何服务器或云服务。即使我们的网站关闭，软件依然可以正常使用。</p>
+                    </div>
+                </div>
+                <div class="privacy-commitment">
+                    <p>我们承诺：开发团队无法查看你的下载记录、使用情况或任何个人信息。这不是营销话术，而是技术架构的必然结果。</p>
+                    <p class="privacy-note">你可以在完全离线的环境下使用本软件（除了首次下载依赖包）。</p>
+                </div>
+            </div>
+
             <div class="disclaimer">
                 <h3>使用须知</h3>
                 <p>本软件仅供学习研究使用。使用本软件可能违反平台服务条款，账号风险由用户自行承担。请勿用于商业牟利，作者不承担任何法律责任。</p>
