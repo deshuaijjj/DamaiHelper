@@ -1,0 +1,209 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  # ===== 打包 Python 后端 =====
+  build-backend-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+          pip install pyinstaller
+      - name: Build backend
+        run: |
+          cd backend
+          pyinstaller backend.spec
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-win
+          path: backend/dist/main.exe
+
+  build-backend-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+          pip install pyinstaller
+      - name: Build backend
+        run: |
+          cd backend
+          pyinstaller backend.spec
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-mac
+          path: backend/dist/main
+
+  build-backend-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+          pip install pyinstaller
+      - name: Build backend
+        run: |
+          cd backend
+          pyinstaller backend.spec
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-linux
+          path: backend/dist/main
+
+  # ===== 打包 Electron 应用 =====
+  build-electron-win:
+    needs: build-backend-win
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build
+      - name: Download backend
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-win
+          path: dist/backend/
+      - name: Install electron deps
+        run: npm install
+      - name: Build Windows app
+        run: npm run build:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-win
+          path: dist/release/*.exe
+
+  build-electron-mac:
+    needs: build-backend-mac
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build
+      - name: Download backend
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-mac
+          path: dist/backend/
+      - name: Set backend executable permission
+        run: chmod +x dist/backend/main
+      - name: Install electron deps
+        run: npm install
+      - name: Build macOS app
+        run: npm run build:mac
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-mac
+          path: dist/release/*.dmg
+
+  build-electron-linux:
+    needs: build-backend-linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build
+      - name: Download backend
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-linux
+          path: dist/backend/
+      - name: Set backend executable permission
+        run: chmod +x dist/backend/main
+      - name: Install electron deps
+        run: npm install
+      - name: Build Linux app
+        run: npm run build:linux
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-linux
+          path: dist/release/*.AppImage
+
+  # ===== 创建 GitHub Release =====
+  create-release:
+    needs: [build-electron-win, build-electron-mac, build-electron-linux]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          merge-multiple: true
+          path: release-files/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: DamaiHelper ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: release-files/*
+          body: |
+            ## DamaiHelper ${{ github.ref_name }}
+            
+            ### 下载说明
+            - **Windows 用户**：下载 `DamaiHelper-Windows-*.exe`，双击安装
+            - **macOS 用户**：下载 `DamaiHelper-Mac-*.dmg`，拖入应用程序文件夹
+            - **Linux 用户**：下载 `DamaiHelper-Linux-*.AppImage`，添加执行权限后运行
+            
+            ### 使用前提
+            - Android 用户：手机开启 USB 调试，安装大麦 APP
+            - iOS 用户：需要安装 WebDriverAgent（详见使用指南）
+            
+            ### 更新内容
+            - 初始版本发布
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
