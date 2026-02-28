@@ -1,0 +1,59 @@
+appId: com.damaihelper.app
+productName: DamaiHelper
+copyright: Copyright © 2024 DamaiHelper
+
+directories:
+  output: dist/release/
+
+files:
+  - electron/
+  - frontend/build/
+  - "!node_modules"
+
+extraResources:
+  - from: dist/backend/
+    to: backend/
+    filter:
+      - "**/*"
+
+# Windows
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: assets/icon.ico
+  artifactName: "DamaiHelper-Windows-v${version}.exe"
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  installerLanguages: zh_CN
+  language: "2052"
+
+# macOS
+mac:
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+  icon: assets/icon.icns
+  artifactName: "DamaiHelper-Mac-v${version}.dmg"
+  category: public.app-category.utilities
+  identity: null
+
+dmg:
+  title: DamaiHelper ${version}
+  window:
+    width: 540
+    height: 380
+
+# Linux
+linux:
+  target:
+    - target: AppImage
+      arch: [x64]
+  icon: assets/icon.png
+  artifactName: "DamaiHelper-Linux-v${version}.AppImage"
+  category: Utility
+
