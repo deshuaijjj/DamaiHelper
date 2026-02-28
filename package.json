@@ -1,0 +1,19 @@
+{
+  "name": "damai-helper",
+  "version": "1.0.0",
+  "description": "大麦抢票助手",
+  "main": "electron/main.js",
+  "scripts": {
+    "electron:dev": "electron .",
+    "build:frontend": "cd frontend && npm install && npm run build",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {}
+}
+
