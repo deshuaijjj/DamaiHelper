@@ -1,80 +1,553 @@
-.app-layout {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* ==================== 全局样式 ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.app-header {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 0 50px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== 布局 ==================== */
+.app-layout {
+  min-height: 100vh;
+  background-color: #F5F5F7;
+}
+
+/* ==================== 左侧 Sidebar ==================== */
+.app-sidebar {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-header {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1D1D1F;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 12px 8px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.menu-item.active {
+  background-color: #007AFF;
+  color: white;
+}
+
+.menu-item.active .menu-icon,
+.menu-item.active .menu-text {
+  color: white;
+}
+
+.menu-icon {
+  font-size: 18px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
 }
 
-.app-header h1 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.menu-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1D1D1F;
 }
 
+.menu-badge {
+  margin-left: auto;
+}
+
+.menu-item.active .menu-badge .ant-badge-count {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* WebSocket 状态指示器 */
+.ws-status {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ws-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.ws-dot.connected {
+  background-color: #34C759;
+  box-shadow: 0 0 8px rgba(52, 199, 89, 0.5);
+}
+
+.ws-dot.disconnected {
+  background-color: #FF3B30;
+}
+
+.ws-text {
+  font-size: 12px;
+  color: #86868B;
+}
+
+/* ==================== 主内容区 ==================== */
 .app-content {
-  padding: 40px 50px;
-  max-width: 1200px;
+  padding: 32px 40px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.content-section {
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-.ant-card {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.ant-card-head {
-  border-bottom: 1px solid #f0f0f0;
+.section-title {
+  font-size: 28px;
   font-weight: 600;
+  color: #1D1D1F;
+  letter-spacing: -0.5px;
+  margin: 0;
 }
 
-.ant-list-item {
-  padding: 16px 24px;
-  transition: all 0.3s;
+.action-button {
+  height: 36px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.2);
 }
 
-.ant-list-item:hover {
-  background: #fafafa;
+/* ==================== 卡片样式 ==================== */
+.content-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.content-card .ant-card-body {
+  padding: 0;
+}
+
+/* ==================== 空状态 ==================== */
+.empty-state {
+  text-align: center;
+  padding: 80px 40px;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 8px;
+}
+
+.empty-hint {
+  font-size: 14px;
+  color: #86868B;
+  margin-bottom: 24px;
+}
+
+/* ==================== 设备列表 ==================== */
+.device-item {
+  padding: 20px 24px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background-color 0.2s ease;
+}
+
+.device-item:last-child {
+  border-bottom: none;
+}
+
+.device-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.device-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.device-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.device-details {
+  flex: 1;
+}
+
+.device-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 4px;
+}
+
+.device-meta {
+  font-size: 13px;
+  color: #86868B;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.device-platform {
+  font-weight: 500;
+}
+
+.device-separator {
+  color: #D1D1D6;
+}
+
+.device-id {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 12px;
+}
+
+/* ==================== 任务列表 ==================== */
+.task-item {
+  padding: 20px 24px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background-color 0.2s ease;
+  align-items: flex-start !important;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.task-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1D1D1F;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-detail-item {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.detail-label {
+  color: #86868B;
+  margin-right: 8px;
+  min-width: 70px;
+}
+
+.detail-value {
+  color: #1D1D1F;
+  font-weight: 500;
+}
+
+.task-actions {
+  margin-left: 16px;
+}
+
+/* ==================== 状态指示器 ==================== */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #1D1D1F;
+}
+
+/* ==================== 弹窗样式 ==================== */
+.task-modal .ant-modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 20px 24px;
+}
+
+.task-modal .ant-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1D1D1F;
+}
+
+.task-modal .ant-modal-body {
+  padding: 24px;
+}
+
+.task-modal .ant-form-item-label > label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1D1D1F;
+}
+
+/* ==================== 按钮样式覆盖 ==================== */
+.ant-btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .ant-btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  background: #007AFF;
+  border-color: #007AFF;
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.2);
 }
 
 .ant-btn-primary:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background: #0051D5;
+  border-color: #0051D5;
+  box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3);
 }
 
-.ant-tag {
-  border-radius: 4px;
-  padding: 2px 8px;
+.ant-btn-dangerous {
+  color: #FF3B30;
+  border-color: rgba(255, 59, 48, 0.3);
 }
 
+.ant-btn-dangerous:hover {
+  color: #FF3B30;
+  border-color: #FF3B30;
+  background-color: rgba(255, 59, 48, 0.05);
+}
+
+/* ==================== 输入框样式 ==================== */
+.ant-input,
+.ant-picker,
+.ant-select-selector {
+  border-radius: 8px !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.ant-input:focus,
+.ant-picker-focused .ant-picker-input,
+.ant-select-focused .ant-select-selector {
+  border-color: #007AFF !important;
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1) !important;
+}
+
+/* ==================== Badge 样式 ==================== */
+.ant-badge-count {
+  background-color: #007AFF;
+  box-shadow: none;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 6px;
+}
+
+/* ==================== List 样式覆盖 ==================== */
+.ant-list-item {
+  border-bottom: none !important;
+}
+
+/* ==================== 响应式设计 ==================== */
 @media (max-width: 768px) {
+  .app-sidebar {
+    width: 180px !important;
+  }
+
   .app-content {
-    padding: 20px;
+    padding: 20px 16px;
   }
-  
-  .app-header {
-    padding: 0 20px;
+
+  .section-title {
+    font-size: 22px;
   }
-  
-  .app-header h1 {
-    font-size: 18px;
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+
+  .device-item,
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .task-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .task-actions .ant-space {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 
+@media (max-width: 480px) {
+  .app-sidebar {
+    width: 60px !important;
+  }
+
+  .menu-text,
+  .menu-badge,
+  .ws-text {
+    display: none;
+  }
+
+  .sidebar-header {
+    padding: 16px 8px;
+  }
+
+  .app-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .menu-item {
+    justify-content: center;
+  }
+
+  .menu-icon {
+    margin-right: 0;
+  }
+}
+
+/* ==================== 滚动条样式 ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== 动画效果 ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-card {
+  animation: fadeIn 0.3s ease;
+}
+
+/* ==================== 打印样式 ==================== */
+@media print {
+  .app-sidebar,
+  .action-button,
+  .task-actions {
+    display: none;
+  }
+
+  .app-content {
+    padding: 0;
+  }
+
+  .content-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
